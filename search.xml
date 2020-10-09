@@ -82,4 +82,38 @@
         <category>C++</category>
       </categories>
   </entry>
+  <entry>
+    <title>布尔表达式</title>
+    <url>/2020/10/09/%E5%B8%83%E5%B0%94%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
+    <content><![CDATA[<h2 id="不达尔表达式"><a href="#不达尔表达式" class="headerlink" title="不达尔表达式"></a>不达尔表达式</h2><a id="more"></a>
+<p>在使用不达尔表达式时，若不是用括号，其表达出的顺序将是:<br>1.执行 <strong>!</strong><br>2.对**&lt;<strong>之类的关系操作符号进行求值<br>3.对</strong>&amp;&amp;<strong>进行求值<br>4.再对</strong>||**进行求值<br>因此为了保持良好的编程习惯</p>
+<blockquote>
+<p>尽量避免使用!</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"> (temperature &gt; <span class="number">90</span>) &amp;&amp; (humidity &gt; <span class="number">0.90</span>) &amp;&amp; (number == integer)</span><br><span class="line"><span class="comment">//由于关系运算&gt;和==先于&amp;&amp;进行求值，所以可以省略上述表达式中的圆括号</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="小细节"><a href="#小细节" class="headerlink" title="小细节"></a>小细节</h1><blockquote>
+<p>短路求值<br>当存在 &amp;&amp; 和 || 时<br>系统会优先对左半边的数值进行求值</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">(x &gt;= <span class="number">0</span>) &amp;&amp; (y &gt; <span class="number">1</span>)</span><br><span class="line"><span class="comment">//此时若x&lt;0，则系统直接判定为 flase 不需要在对右半边部分进行运算</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>枚举类型</title>
+    <url>/2020/10/09/%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B/</url>
+    <content><![CDATA[<h1 id="枚举类型"><a href="#枚举类型" class="headerlink" title="枚举类型"></a>枚举类型</h1><a id="more"></a>
+<p>枚举类型是指用一组int类型定义的常量。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">enum</span> animals &#123; dog, cat, pig &#125;</span><br><span class="line"><span class="comment">//若不指定每一组的特定数值，则系统会自动分配</span></span><br><span class="line"><span class="keyword">enum</span> animals &#123; dog=<span class="number">0</span>, cat=<span class="number">1</span>, pig=<span class="number">2</span> &#125;</span><br><span class="line"><span class="comment">//如果只将部分枚举常量初始化成特定的值</span></span><br><span class="line"><span class="keyword">enum</span> animals &#123; dog = <span class="number">17</span>, cat, pig = <span class="number">-3</span>  &#125;</span><br><span class="line"><span class="comment">//则 dog为17 cat为18 pig为-3</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>强枚举或枚举类<br>不希望枚举具有整数的行为。<br>只需在enum后加入class，然后在枚举名称后添加两个冒号来限定枚举值</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+  </entry>
 </search>
