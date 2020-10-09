@@ -86,7 +86,7 @@
     <title>布尔表达式</title>
     <url>/2020/10/09/%E5%B8%83%E5%B0%94%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
     <content><![CDATA[<h2 id="不达尔表达式"><a href="#不达尔表达式" class="headerlink" title="不达尔表达式"></a>不达尔表达式</h2><a id="more"></a>
-<p>在使用不达尔表达式时，若不是用括号，其表达出的顺序将是:<br>1.执行 <strong>!</strong><br>2.对**&lt;<strong>之类的关系操作符号进行求值<br>3.对</strong>&amp;&amp;<strong>进行求值<br>4.再对</strong>||**进行求值<br>因此为了保持良好的编程习惯</p>
+<p>在使用不达尔表达式时，若不是用括号，其表达出的顺序将是:<br>1.执行 <strong>!</strong><br>2.对 <strong>&lt;</strong> 之类的关系操作符号进行求值<br>3.对 <strong>&amp;&amp;</strong> 进行求值<br>4.再对 <strong>||</strong> 进行求值<br>因此为了保持良好的编程习惯</p>
 <blockquote>
 <p>尽量避免使用!</p>
 </blockquote>
