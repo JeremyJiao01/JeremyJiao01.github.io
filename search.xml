@@ -34,6 +34,10 @@
 <p>例子<br>7，2均为int类型，然而<strong>当<font color =red>7/2/</font>时，其输出的数据类型属于double</strong><br>*<font color = blue>若要改为double值，需将7或2变为7.0或2.0</font>*<br>// 为何不将所有变量都以double来表示，而不是int，除了因为容器字节大小。<br><strong>使用%时系统会只获得运算结果的整数部分。系统不会判断四舍五入，而是直接舍弃小数点后部分，保留整数。</strong></p>
 </blockquote>
 <hr>
+<p>setprecision(n)<br>可控制输出流显示浮点数的数字个数。<br>C++默认的流输出数值有效位是6，所以不管数据是多少，都只输出六位。<br>如果setprecision(n)与setiosflags(ios::fixed)或者setiosflags(ios_base::fixed)<br>合用，可以控制小数点右边的数字个数。<br>setiosflags(ios::fixed)是用定点方式表示实数。 如果与setiosnags(ios::scientific)合用，可以控制指数表示法的小数位数。<br>setiosflags(ios::scientific)是用指数方式表示实数。</p>
+<blockquote>
+<p>使用控制符时，在程序开头加投文件#include <iomanip> C++有两种方法控制格式输出</p>
+</blockquote>
 ]]></content>
       <categories>
         <category>C++</category>
@@ -111,6 +115,128 @@
 <blockquote>
 <p>强枚举或枚举类<br>不希望枚举具有整数的行为。<br>只需在enum后加入class，然后在枚举名称后添加两个冒号来限定枚举值</p>
 </blockquote>
+]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>switch语句</title>
+    <url>/2020/10/10/switch%E8%AF%AD%E5%8F%A5/</url>
+    <content><![CDATA[<h1 id="switch语句多路分支"><a href="#switch语句多路分支" class="headerlink" title="switch语句多路分支"></a>switch语句多路分支</h1><a id="more"></a>
+<p>执行switch语句时，会在多个分支中选择一个，具体关键字由switch之后的()内的控制表达式决定。<br>控制表达式具有char类型。</p>
+<blockquote>
+<p>char是容量单字符，不能储存汉字<br>(两个字节)</p>
+</blockquote>
+<blockquote>
+<p>敞亮之后要跟一个冒号<br>case ‘b’ :</p>
+</blockquote>
+<h1 id="break语句"><a href="#break语句" class="headerlink" title="break语句"></a>break语句</h1><p>break语句由break和一个分号构成，系统执行完case之后的语句会一直执行下去，知道遇见break语句。</p>
+<blockquote>
+<p>可为代码小节使用两个case标签。<br>case ‘A’ :<br>case ‘a’ :<br>例子:</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> choice;</span><br><span class="line"><span class="keyword">switch</span>(choice)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">case</span> <span class="number">1</span> :</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> <span class="number">2</span> :</span><br><span class="line">     <span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;error&quot;</span>;</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="语句块"><a href="#语句块" class="headerlink" title="语句块"></a>语句块</h1><p>语句块使用{ }封闭起来的C++代码，块内声明的变量是哪个块的局部变量<br>所以变量名能在块外用于其他用途。</p>
+]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>多路分支</title>
+    <url>/2020/10/10/%E5%A4%9A%E8%B7%AF%E5%88%86%E6%94%AF/</url>
+    <content><![CDATA[<h1 id="多路分支"><a href="#多路分支" class="headerlink" title="多路分支"></a>多路分支</h1><a id="more"></a>
+<p>嵌套在if语句中的if-else语句</p>
+<p>写一个if-else语句，检查油量<br>若多于3/4则不输出任何语句<br>若低于3/4，则检查油量，若低于1/4，则提示赛车手停止</p>
+<blockquote>
+<p>第一种书写格式</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (fuel &lt; <span class="number">0.75</span>)</span><br><span class="line">   <span class="keyword">if</span> (fuel &lt; <span class="number">0.25</span>)</span><br><span class="line">      <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;fuel very low ,caution.\n&quot;</span>;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">   <span class="built_in">cout</span>&lt;&lt; <span class="string">&quot;fuel over 3/4 , dont stop now!.\n&quot;</span>;</span><br></pre></td></tr></table></figure>
+<p>此程序虽然用了缩进的格式，但系统并不会识别<br>系统只会将else分配给最近的缺少else的if语句。<br>因此需要使用{ }</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (fuel &lt; <span class="number">0.75</span>)</span><br><span class="line">&#123; </span><br><span class="line">   <span class="keyword">if</span> (fuel &lt; <span class="number">0.25</span>)</span><br><span class="line">      <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;fuel very low. caution!.\n&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">     <span class="built_in">cout</span> &lt;&lt;<span class="string">&quot;fuel over 3/4. dont stop now!.\n&quot;</span>;</span><br></pre></td></tr></table></figure>
+<h1 id="多路if-else语句"><a href="#多路if-else语句" class="headerlink" title="多路if-else语句"></a>多路if-else语句</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//else-if语句不需要进行缩进，否则会过长</span></span><br><span class="line"><span class="keyword">if</span> (guess &gt; number)</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;too high.&quot;</span>;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (guess &lt; number)</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;too low.&quot;</span>;</span><br><span class="line"><span class="keyword">else</span> <span class="comment">// (guess == number)</span></span><br><span class="line">   <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot; correct!&quot;</span>;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>循环语句</title>
+    <url>/2020/10/12/%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5/</url>
+    <content><![CDATA[<h1 id="for语句"><a href="#for语句" class="headerlink" title="for语句"></a>for语句</h1><a id="more"></a>
+<h1 id="重复循环语句"><a href="#重复循环语句" class="headerlink" title="重复循环语句"></a>重复循环语句</h1><p>伪代码</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> count = <span class="number">1</span>; count &lt;= time; count++)</span><br><span class="line"><span class="comment">//loop body</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="哨兵值"><a href="#哨兵值" class="headerlink" title="哨兵值"></a>哨兵值</h1><p>用于终止程序但不进入程序的计算中<br>例如</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;输入整数进行计算，输入负数终止计算。\n&quot;</span>;</span><br><span class="line">sum = <span class="number">0</span></span><br><span class="line"><span class="built_in">cin</span> &gt;&gt; number</span><br><span class="line"><span class="keyword">while</span> (number &gt;= <span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line">sum = sum + number;</span><br><span class="line"><span class="built_in">cin</span> &gt;&gt; number;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//用户输入1，2，3，-1，其中1，2，3会进行累加，但-1并不会影响结果</span></span><br></pre></td></tr></table></figure>
+<h1 id="终止输入特例"><a href="#终止输入特例" class="headerlink" title="终止输入特例"></a>终止输入特例</h1><ol>
+<li>由计数控制的循环</li>
+<li>迭代之前询问</li>
+<li>遇到标志条件时退出</li>
+</ol>
+<hr>
+]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>实参</title>
+    <url>/2020/10/12/%E5%AE%9E%E5%8F%82/</url>
+    <content><![CDATA[<h1 id="预定义函数"><a href="#预定义函数" class="headerlink" title="预定义函数"></a>预定义函数</h1><a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> 名称    |          说明           |       实参类型       |   返回值类型   |             实例             |       值        |   库的头文件   |   cmath   |   cmath   |   cstdlib   |   cstdlib</span><br><span class="line">fabs    |     取double的绝对值     |       double        |    double    |         fans(-7.6)          |      7.6       |    cmath     |           |           |             |          </span><br><span class="line">ceil    |         向上调整         |       double       |    double     |    ceil(3.2)   ceil(3.9)    |    4.0 4.0     |    cmath     |           |           |             |          </span><br><span class="line">floor   |         向下调整         |       double       |    double     |   floor(3.2).  floor(3.9)   |    3.0 3.0     |     cmath     |           |           |             |          </span><br><span class="line">srand   |   为随机数生成器提供种子   |         无          |      无       |           srand()           |       无       |   cstdlib    |           |           |             |          </span><br><span class="line">rand    |          随机数          |         无         |      int      |           rand()            |   0~RAND_MAX   |    cstdlib    |           |           |             |          </span><br><span class="line"> pow    |        求x的y次幂        |   至少一个为double   |    double     |         pow(4.0,2)          |      16.0      |    cmath     |           |           |             |          </span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>使用时需要包含#include <cstdlib>或#include <cmath><br>乘方为(3.0)^2.0</p>
+</blockquote>
+<hr>
+<p>在c++中可指示计算机把int类型的值强制转换成double类型的值。<br>将9转化为double类型<br>static_cast<double>(9)</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">double</span> answer</span><br><span class="line">     answer = <span class="keyword">static_cast</span>&lt;<span class="keyword">double</span>&gt;(<span class="number">9</span>)/<span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>调用函数</title>
+    <url>/2020/10/28/%E8%B0%83%E7%94%A8%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<h1 id="函数声明"><a href="#函数声明" class="headerlink" title="函数声明"></a>函数声明</h1><a id="more"></a>
+<p>函数声明会告诉编译器函数名称及如何调用函数。<br>函数声明包括以下几个部分</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> num1, <span class="keyword">int</span> num2)</span></span>;</span><br><span class="line"><span class="comment">// 声明函数类型，以及其包含的形参的类型</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//局部变量</span></span><br><span class="line">    <span class="keyword">int</span> result;</span><br><span class="line">    <span class="keyword">if</span> (num1 &gt; num2)</span><br><span class="line">        result = num1;</span><br><span class="line">    <span class="keyword">else</span> </span><br><span class="line">        result = num2;</span><br><span class="line">   <span class="keyword">return</span> result;</span><br><span class="line">   <span class="comment">//设置返回值 </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>以上例子中可以不设置返回值， 但是函数声明是需要使用void</p>
+</blockquote>
+<hr>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 函数声明</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> num1, <span class="keyword">int</span> num2)</span></span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="comment">// 局部变量声明</span></span><br><span class="line">   <span class="keyword">int</span> a = <span class="number">100</span>;</span><br><span class="line">   <span class="keyword">int</span> b = <span class="number">200</span>;</span><br><span class="line">   <span class="keyword">int</span> ret;</span><br><span class="line"> </span><br><span class="line">   <span class="comment">// 调用函数来获取最大值</span></span><br><span class="line">   ret = max(a, b);</span><br><span class="line"> </span><br><span class="line">   <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;Max value is : &quot;</span> &lt;&lt; ret &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"> </span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 函数返回两个数中较大的那个数</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> num1, <span class="keyword">int</span> num2)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="comment">// 局部变量声明</span></span><br><span class="line">   <span class="keyword">int</span> result;</span><br><span class="line"> </span><br><span class="line">   <span class="keyword">if</span> (num1 &gt; num2)</span><br><span class="line">      result = num1;</span><br><span class="line">   <span class="keyword">else</span></span><br><span class="line">      result = num2;</span><br><span class="line"> </span><br><span class="line">   <span class="keyword">return</span> result; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>编程练习</title>
+    <url>/2020/10/09/%E7%BC%96%E7%A8%8B%E7%BB%83%E4%B9%A0/</url>
+    <content><![CDATA[<h1 id="巴比伦算法"><a href="#巴比伦算法" class="headerlink" title="巴比伦算法"></a>巴比伦算法</h1><a id="more"></a>
+<p>计算数字n的平方根的巴比伦算法如下:<br>1.猜一个答案(第一次可以猜n/2)，将值赋予给guess<br>2.计算r = n/guess<br>3.guess = (guess + r)/2<br>4.回到步骤2。步骤2，3重复得越多，guess 就越接近n的平方根<br>如果当前的guess比上一次的guess相差不到1%就输出答案</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> n,guess1,r,guess2 = <span class="number">0.0</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;please enter the basic number\n&quot;</span>;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt; n;</span><br><span class="line">      <span class="keyword">do</span></span><br><span class="line">      &#123;    guess1 = guess2;</span><br><span class="line">          guess2 = n/<span class="number">2</span> ;<span class="comment">//此处错误，应提到do上方</span></span><br><span class="line">       r = n/guess2;</span><br><span class="line">       guess2 = (guess2 + r)/<span class="number">2</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    <span class="keyword">while</span>((guess1 - guess2)/<span class="number">100</span> &gt;<span class="number">0.01</span>);</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt; guess2 &lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>数组</title>
+    <url>/2020/10/28/%E6%95%B0%E7%BB%84/</url>
+    <content><![CDATA[<h1 id="数组的定义"><a href="#数组的定义" class="headerlink" title="数组的定义"></a>数组的定义</h1><a id="more"></a>
+<ol>
+<li>数据类型  数组名 [数组长度]；</li>
+<li>数据类型 数组名 [数组长度] = {值1， 值2 ….}；</li>
+<li>数据类型 数组名[ ] = {值1， 值2 ….}；<blockquote>
+<p>数组永远都是从0开始<br>int arr[3] = {1,2,3} 因此 arr[0] = 1, arr[1] = 2….</p>
+</blockquote>
+<h1 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> arr[<span class="number">9</span>] = &#123;<span class="number">10</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">2</span>, <span class="number">3</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">1</span>,<span class="number">5</span>&#125;;</span><br><span class="line">      <span class="comment">//开始冒泡排序</span></span><br><span class="line">      <span class="comment">//总排序轮数为 元素个数-1</span></span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">0</span>; i&lt;<span class="number">9</span><span class="number">-1</span>;i++)</span><br><span class="line">      &#123;</span><br><span class="line">          <span class="comment">//内层循环对比 次数 = 元素个数-当前轮数-1</span></span><br><span class="line">          <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j&lt;<span class="number">9</span>-i<span class="number">-1</span>; j++)</span><br><span class="line">          &#123;</span><br><span class="line">              <span class="comment">//如果第一个数字比第二个数字大，交换两个数字</span></span><br><span class="line">              <span class="keyword">if</span> (arr[j] &gt; arr[j + <span class="number">1</span>])</span><br><span class="line">              &#123;</span><br><span class="line">                  <span class="keyword">int</span> temp = arr[j];</span><br><span class="line">                  arr[j]= arr[j +<span class="number">1</span>];</span><br><span class="line">                  arr[j+<span class="number">1</span>]= temp;</span><br><span class="line">                  <span class="comment">//可用swap(arr[j], arr[j++])</span></span><br><span class="line">              &#125;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;排序后为:&quot;</span>&lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;<span class="number">9</span>; i++)</span><br><span class="line">      &#123;</span><br><span class="line">          <span class="built_in">cout</span> &lt;&lt; arr[i]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
 ]]></content>
       <categories>
         <category>C++</category>
